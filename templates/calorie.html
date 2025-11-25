@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Alpha Fitness | Calorie Counter{% endblock %}
+{% block content %}
+<section class="container form-page">
+  <h2>Calorie Counter</h2>
+  <form id="calorieForm" class="dark-form">
+    <label>Activity
+      <select id="activity">
+        <option value="running">Running</option>
+        <option value="cycling">Cycling</option>
+        <option value="yoga">Yoga</option>
+        <option value="walking">Walking</option>
+      </select>
+    </label>
+    <label>Duration (minutes)
+      <input id="minutes" type="number" min="1" required>
+    </label>
+    <button type="submit">Calculate</button>
+  </form>
+  <div id="output" class="result-box">Result</div>
+</section>
+{% endblock %}
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/calorie.js') }}"></script>
+{% endblock %}

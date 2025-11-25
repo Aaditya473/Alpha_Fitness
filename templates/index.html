@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Alpha Fitness | Home{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-overlay">
+    <div class="hero-content">
+      <h2>Transform Your Lifestyle With Alpha Fitness</h2>
+      <p>Personalized workouts, nutrition guidance, and expert trainers to help you reach your goals.</p>
+      <div class="hero-ctas">
+        <button onclick="openModal('registerModal')">Join Now</button>
+        <button onclick="location.href='{{ url_for('services_page') }}'">View Services</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container">
+  <h2>Why Alpha Fitness?</h2>
+  <div class="features">
+    <div class="card">
+      <h3>Custom Plans</h3>
+      <p>Tailored workout and diet plans based on your BMI and lifestyle.</p>
+    </div>
+    <div class="card">
+      <h3>Expert Trainers</h3>
+      <p>Certified trainers to guide you every step of your journey.</p>
+    </div>
+    <div class="card">
+      <h3>Track Progress</h3>
+      <p>Use our BMI and calorie tools to monitor your progress.</p>
+    </div>
+  </div>
+
+  <section class="testimonials">
+    <h2>What Members Say</h2>
+    <div class="test-row">
+      <blockquote>
+        “I lost 8kg in 3 months with Alpha Fitness. Their trainers really care.”
+        <span>— Rohan</span>
+      </blockquote>
+      <blockquote>
+        “The best part is the flexibility. I can work out from home and still get results.”
+        <span>— Meera</span>
+      </blockquote>
+    </div>
+  </section>
+</section>
+{% endblock %}

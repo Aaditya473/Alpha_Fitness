@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Alpha Fitness{% endblock %}</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <h1 class="logo" onclick="location.href='{{ url_for('home') }}'">ALPHA FITNESS</h1>
+    <nav class="main-nav">
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('bmi_page') }}">BMI</a>
+      <a href="{{ url_for('calorie_page') }}">Calories</a>
+      <a href="{{ url_for('services_page') }}">Services</a>
+      <a href="{{ url_for('trainer_page') }}">Trainers</a>
+      <a href="{{ url_for('contact_page') }}">Contact</a>
+
+      <!-- Auth controls -->
+      <div id="auth-controls" class="auth-controls">
+        <!-- Before login -->
+        <a id="login-link" class="btn small" href="javascript:void(0)" onclick="openModal('loginModal')">Login</a>
+        <a id="register-link" class="btn outline small" href="javascript:void(0)" onclick="openModal('registerModal')">Sign up</a>
+
+        <!-- After login -->
+        <div id="user-menu" class="user-menu hidden">
+          <button id="user-avatar" class="avatar-btn" aria-haspopup="menu" aria-expanded="false" title="Account">
+            
+              <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+  <path fill="var(--accent)" d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-5 0-9 2.5-9 5.5V22h18v-2.5C21 16.5 17 14 12 14z"/>
+</svg>
+
+            </svg>
+          </button>
+          <div id="user-dropdown" class="menu hidden" role="menu">
+            <a href="{{ url_for('booking_page') }}" role="menuitem">My Bookings</a>
+            <button id="logout-btn" role="menuitem">Logout</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© 2025 Alpha Fitness</p>
+  </div>
+</footer>
+
+<div id="chat-root"></div>
+
+<!-- Login Modal -->
+<div id="loginModal" class="modal hidden">
+  <div class="modal-content">
+    <h2>Login</h2>
+    <form id="loginForm" class="dark-form">
+      <label>Email
+        <input type="email" name="email" required>
+      </label>
+      <label>Password
+        <input type="password" name="password" required>
+      </label>
+      <button type="submit">Login</button>
+      <div id="loginMsg" class="result-box"></div>
+    </form>
+    <button class="close-btn" onclick="closeModal('loginModal')">Close</button>
+  </div>
+</div>
+
+<!-- Register Modal -->
+<div id="registerModal" class="modal hidden">
+  <div class="modal-content">
+    <h2>Sign Up</h2>
+    <form id="registerForm" class="dark-form">
+      <label>Full Name
+        <input type="text" name="fullname" required>
+      </label>
+      <label>Email
+        <input type="email" name="email" required>
+      </label>
+      <label>Password
+        <input type="password" name="password" required>
+      </label>
+      <button type="submit">Register</button>
+      <div id="regMsg" class="result-box"></div>
+    </form>
+    <button class="close-btn" onclick="closeModal('registerModal')">Close</button>
+  </div>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Alpha Fitness | Trainers{% endblock %}
+{% block content %}
+<section class="container trainers-page">
+  <h2>Meet Our Trainers</h2>
+  <div class="trainer-grid">
+    <div class="trainer-card">
+      <div class="trainer-pic" style="background-image:url('{{ url_for('static', filename='images/ravi.jpg') }}');"></div>
+      <h4>Ravi Kumar</h4>
+      <p>Weight Management Specialist</p>
+      <button class="book-btn" data-trainer="Ravi Kumar">Book</button>
+    </div>
+    <div class="trainer-card">
+      <div class="trainer-pic" style="background-image:url('{{ url_for('static', filename='images/amit.jpg') }}');"></div>
+      <h4>Amit Patel</h4>
+      <p>Strength & Conditioning Coach</p>
+      <button class="book-btn" data-trainer="Amit Patel">Book</button>
+    </div>
+    <div class="trainer-card">
+      <div class="trainer-pic" style="background-image:url('{{ url_for('static', filename='images/priya.jpg') }}');"></div>
+      <h4>Priya Sharma</h4>
+      <p>Yoga & Mobility Expert</p>
+      <button class="book-btn" data-trainer="Priya Sharma">Book</button>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/trainer.js') }}"></script>
+{% endblock %}

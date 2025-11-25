@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Alpha Fitness | BMI Calculator{% endblock %}
+{% block content %}
+<section class="container form-page">
+  <h2>BMI Calculator</h2>
+  <form id="bmiForm" class="dark-form">
+    <label>Weight (kg)
+      <input id="weight" type="number" step="0.1" required>
+    </label>
+    <label>Height (m)
+      <input id="height" type="number" step="0.01" required>
+    </label>
+    <button type="submit">Calculate BMI</button>
+  </form>
+  <div id="result" class="result-box" aria-live="polite">Result</div>
+</section>
+{% endblock %}
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/bmi.js') }}"></script>
+{% endblock %}
