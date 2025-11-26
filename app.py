@@ -22,7 +22,7 @@ def get_db():
     if not db_url:
         # You can change message if you want
         raise RuntimeError(
-            "DATABASE_URL not set. In Railway, set DATABASE_URL = ${{ MySQL.MYSQL_URL }} "
+            "DATABASE_URL not set. In Railway, set DATABASE_URL = ${{ mysql://root:WJryBoOZmHUqgirsrEZevXDlRGnibHRh@mysql.railway.internal:3306/railway }} "
         )
 
     parsed = urlparse(db_url)
