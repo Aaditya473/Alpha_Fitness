@@ -4,6 +4,7 @@ from flask_cors import CORS
 import mysql.connector
 from werkzeug.security import generate_password_hash, check_password_hash
 from dotenv import load_dotenv
+from urllib.parse import urlparse   # ✅ NEW: to parse DATABASE_URL
 
 load_dotenv()
 
@@ -15,11 +16,23 @@ CORS(app, supports_credentials=True)
 
 # ---------- DB CONNECTION ----------
 def get_db():
+    # ✅ Use single env var that Railway provides (mapped from MySQL.MYSQL_URL)
+    db_url = os.getenv("DATABASE_URL")
+
+    if not db_url:
+        # You can change message if you want
+        raise RuntimeError(
+            "DATABASE_URL not set. In Railway, set DATABASE_URL = ${{ MySQL.MYSQL_URL }} "
+        )
+
+    parsed = urlparse(db_url)
+
     return mysql.connector.connect(
-        host=os.getenv("DB_HOST", "localhost"),
-        user=os.getenv("DB_USER", "root"),
-        password=os.getenv("DB_PASS", ""),
-        database=os.getenv("DB_NAME", "alpha_fitness"),
+        host=parsed.hostname,
+        user=parsed.username,
+        password=parsed.password,
+        database=parsed.path.lstrip("/"),
+        port=parsed.port or 3306,
         autocommit=True
     )
 
@@ -279,4 +292,3 @@ def contact_submit():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
-
